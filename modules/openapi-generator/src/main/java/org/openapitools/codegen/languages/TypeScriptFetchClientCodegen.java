@@ -261,6 +261,12 @@ public class TypeScriptFetchClientCodegen extends AbstractTypeScriptClientCodege
                 op.operationIdLowerCase += "operation";
                 op.operationIdSnakeCase += "_operation";
             }
+            if (op.operationIdCamelCase.matches("^[0-9]+?.*")) {
+                // if operationId starts with numeric chars, escape it
+                op.operationIdCamelCase = "_" + op.operationIdCamelCase;
+                op.operationIdLowerCase = "_" + op.operationIdLowerCase;
+                op.operationIdSnakeCase = "_" + op.operationIdSnakeCase;
+            }
         }
     }
 
